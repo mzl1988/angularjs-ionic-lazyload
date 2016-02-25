@@ -1,0 +1,1 @@
+define(["../../app"],function(n){n.controller("MineCtrl",["$scope",function(n){console.log("MineCtrl")}])});

@@ -1,0 +1,22 @@
+<script type="text/javascript">
+angular.module('boot').controller('RecommendCtrl', function($scope, config) {
+    $scope.items = [
+      {text : "ionic"},
+      {text : "下拉刷新"}
+    ];
+
+    $scope.doRefresh = function() {
+      $scope.items.unshift({text : "下拉刷新"});
+      $scope.items.unshift({text : "ionic"});
+      $scope.$broadcast('scroll.refreshComplete');
+    };
+});
+</script>
+<div class="content" ng-controller="RecommendCtrl">
+  <ion-refresher pulling-text="下拉刷新" spinner="ios" on-refresh="doRefresh()"></ion-refresher>
+  <ul class="list">
+      <li class="item" ng-repeat="item in items">
+        {{item.text}}
+      </li>
+  </ul>
+</div>

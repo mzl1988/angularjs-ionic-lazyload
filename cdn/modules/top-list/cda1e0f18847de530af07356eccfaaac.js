@@ -1,0 +1,1 @@
+define(["../../app"],function(o){o.controller("TopListCtrl",["$scope",function(o){console.log("TopListCtrl")}])});

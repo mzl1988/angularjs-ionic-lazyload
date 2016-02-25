@@ -1,0 +1,1 @@
+define(["../../app"],function(o){o.controller("TabsController",["$scope",function(o){console.log("ssssss")}])});

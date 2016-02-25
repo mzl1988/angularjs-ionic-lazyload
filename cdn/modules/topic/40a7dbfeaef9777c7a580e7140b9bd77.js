@@ -1,0 +1,1 @@
+define(["../../app"],function(o){o.controller("TopicCtrl",["$scope","config",function(o,n){console.log(n.api)}])});

@@ -1,0 +1,59 @@
+<style type="text/css">/*  頻道管理  */
+    .channels {
+        margin: 0;
+        padding: 0;
+    }
+
+    .channels .title {
+        color: #666;
+        font-size: 12px;
+        line-height: 2em;
+        padding: 0 10px;
+        background-color: #f5f5f5;
+    }
+
+
+
+
+    .channels .list {
+        margin: 20px 0 10px 0;
+        padding: 0;
+        position: relative;
+        display: block;
+        overflow: hidden;
+    }
+
+    .channels .list li {
+        float: left;
+        display: inline-block;
+        width: 25%;
+        margin-bottom: 10px;
+        -webkit-animation: zoomIn 300ms ease;
+    }
+
+    @-webkit-keyframes zoomIn {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale3d(.3,.3,.3);
+            transform: scale3d(.3,.3,.3)
+        }
+
+        50% {
+            opacity: 1
+        }
+    }
+
+    .channels .list li.fixed a {
+        background-color: #f0f0f0;
+    }
+    .channels .list li a {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        margin: 0 8px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 2em;
+        display: block;
+        text-decoration: none;
+        color: #333;
+    }</style><ion-modal-view><ion-header-bar align-title="center" class="bar-assertive"><h1 class="title">頻道管理</h1><div class="buttons"><button class="button button-clear button-icon icon ion-ios-close-empty" ng-click="closeChannels()"></button></div></ion-header-bar><ion-content><div class="channels"><div class="title">點擊刪除頻道</div><ul class="list"><li ng-repeat="tab in tabs" ng-class="{'fixed': $index == 0}" ng-click="setTabs($index, tab)"><a>{{tab.text}}</a></li></ul><div class="title" ng-if="tabs.length < 12">點擊添加以下頻道</div><div class="title" ng-if="tabs.length > 11"><span class="assertive">最多12個頻道，請先刪除一些</span></div><ul class="list"><li ng-repeat="tab in noTabs" ng-click="setNoTabs($index, tab)"><a>{{tab.text}}</a></li></ul></div></ion-content></ion-modal-view>
