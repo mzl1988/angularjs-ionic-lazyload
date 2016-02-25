@@ -1,3 +1,22 @@
+# 开发时
+  0. npm install
+  1. npm start
+  2. 在浏览器打开 http://192.168.X.XX:6228/app
+
+# 调试手机网页 weinre
+
+  使用npm安装weinre,在node.js安装目录输入以下命令
+  npm install weinre
+  node node_modules/weinre/weinre --boundHost -all-
+  node node_modules/weinre/weinre --boundHost  192.168.X.XX
+
+  需调试的页面加入JS脚本
+  <script src="http://192.168.X.XX:8080/target/target-script-min.js#jiaoye"></script>
+  在PC端使用webkit浏览器打开控制台
+  http://192.168.X.XX:8080/client/#jiaoye
+  其中 #后面为识别码,识别码仅仅是为了识别多个需调试的项目时使用，可供多用户操作。
+
+
 # angularjs-ionic-lazyload
 
 这是一个 [AngularJS](https://angularjs.org/) 的示例项目。它使用 [RequireJS](http://requirejs.org/) 按需加载控制器、指令、过滤器等文件，然后使用 [r.js](https://github.com/jrburke/r.js/) 将这些零散的文件按照模块的划分合理的合并在一起，然后使用各种 [gulp](http://gulpjs.com/) 插件精简文件，最后使用 [gulp-rev-all](https://github.com/smysnk/gulp-rev-all) 将这些文件全都根据文件内容重命名成 md5 的文件名。

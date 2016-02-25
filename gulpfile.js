@@ -35,6 +35,7 @@ var SRC        = 'app' ,
     minifyJS   = require( 'gulp-uglify' ) ,
     minifyCSS  = require( 'gulp-minify-css' ) ,
     minifyHTML = require( 'gulp-htmlmin' ) ,
+    budo = require('budo'),
 
     //changed    = require( 'gulp-changed' ) ,
     concat     = require( 'gulp-concat' ) ,
@@ -178,3 +179,18 @@ function matchArray( value , arr ) {
         return v.test( value );
     } );
 }
+
+
+//start our local development server
+gulp.task('watch', function(cb) {
+  budo('app/index.js', {
+    live: true,
+    watchGlob: '{app}/**/*.{html,css,js}',
+    stream: process.stdout,
+    port: 6228,
+    livePort: 6229
+  }).on('connect', function(ev) {
+      // do something on connect ...
+    })
+    .on('exit', cb)
+})
