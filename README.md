@@ -30,8 +30,6 @@
  3. 安装 gulp 插件：`npm install` 
  4. 修改 [gulpfile.js] 里的 `CDN_PREFIX` 变量为 `false`
  5. 运行 `gulp`，然后在 web 服务器中打开 [cdn/index.html]。双击打开（即以 file:// 协议打开）是无效的。
- 
-[在线预览在这里](http://xxxxxxxx)，记得打开浏览器的开发人员工具的网络面板来查看文件加载情况。注意，在线预览的所有静态文件都是从 https://dn-lmk123.qbox.me 加载的，这是因为在 gulpfile.js 里指定了 `CDN_PREFIX` 变量。
 
 ### 添加 cdn 前缀
 
