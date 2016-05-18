@@ -96,7 +96,11 @@ $stateProvider
     templateUrl : 'modules/customer/basic/index.html' ,
     controller : 'CustomerBasicController' ,
     resolve : {
-      loadModule : asyncLoad( [ 'modules/customer/basic/index' ] ) // 子状态自己的代码
+      loadModule : asyncLoad( [ 
+        'modules/customer/basic/index',
+         // .css 后缀需要带上，否则 gulp-rev-all 不会更新引用
+        'css!./styles/xxxx.css' // 依赖的 css 可以写在这里
+      ] ) // 子状态自己的代码
     }
   } )
   // ...
