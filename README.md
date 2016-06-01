@@ -36,7 +36,7 @@
 在 gulpfile.js 里指定 `CDN_PREFIX` 变量的值，那么 `gulp` 命令会给所有的路径（例如代码里的 `templateUrl` 模板路径、html 文件里引用的图片、脚本、样式表等文件）添加这个前缀；[app/index.html] 里的 [data-main](http://requirejs.org/docs/api.html#data-main) 也会加上这个前缀，所以 [baseUrl](http://requirejs.org/docs/api.html#config-baseUrl) 会被自动设为这个值。
 
 ### 它是怎么做到按需加载控制器、指令、过滤器等文件的？
-见 [app/bootstrap.js](https://github.com/lmk123/angularjs-requirejs-rjs-md5/blob/master/app/bootstrap.js)。
+见 [app/bootstrap.js](https://github.com/mzl1988/angularjs-ionic-lazyload/blob/master/app/bootstrap.js)。
 
 ### 它是怎么用 gulp 来处理源文件的？
 
