@@ -6,7 +6,56 @@ define( [
         .config( [
             '$stateProvider' ,
             '$ionicConfigProvider' ,
-            function ($stateProvider, $ionicConfigProvider) {
+            '$provide',
+            '$httpProvider',
+            function ($stateProvider, $ionicConfigProvider, $provide, $httpProvider) {
+                // Intercept http calls.
+                  $provide.factory('MyHttpInterceptor', ['$q', '$location', function ($q, $location) {
+                    return {
+                      // On request success
+                      request: function (config) {
+                        config.headers = config.headers || {};
+                        config.headers['token'] = window.sessionStorage.getItem('simplysweet_token');
+                        // console.log(config); // Contains the data about the request before it is sent.
+
+                        // Return the config or wrap it in a promise if blank.
+                        return config || $q.when(config);
+                      },
+
+                      // On request failure
+                      requestError: function (rejection) {
+                        // console.log(rejection); // Contains the data about the error on the request.
+                        
+                        // Return the promise rejection.
+                        return $q.reject(rejection);
+                      },
+
+                      // On response success
+                      response: function (response) {
+                        // console.log(response); // Contains the data from the response.
+                        
+                        // Return the response or promise.
+                        return response || $q.when(response);
+                      },
+
+                      // On response failture
+                      responseError: function (rejection) {
+                        //console.log(rejection); // Contains the data about the error.
+                        if(401 === rejection.status) {
+                            // token失效到登陸頁面
+                            // $location.path('/signin');
+                        }
+                        
+                        // Return the promise rejection.
+                        return $q.reject(rejection);
+                      }
+                    };
+                  }]);
+
+                  // Add the interceptor to the $httpProvider.
+                $httpProvider.interceptors.push('MyHttpInterceptor');
+                $ionicConfigProvider.navBar.alignTitle('center');
+                $ionicConfigProvider.backButton.text('返回');
                 $ionicConfigProvider.platform.android.tabs.style('standard');
                 $ionicConfigProvider.platform.android.tabs.position('bottom');
 
@@ -15,6 +64,7 @@ define( [
                     url : '/tab' ,
                     abstract: true,
                     templateUrl : 'modules/tab/tabs.html',
+                    prefetchTemplate: false,
                     controller : 'TabsController' ,
                     resolve : {
                         load : loadDeps( [
@@ -27,6 +77,7 @@ define( [
                     views: {
                       'home-tab': {
                         templateUrl : 'modules/home/home.html',
+                        prefetchTemplate: false,
                         controller : 'HomeController' ,
                         resolve : {
                             load : loadDeps( [
@@ -41,6 +92,7 @@ define( [
                     views: {
                       'top-list-tab': {
                         templateUrl : 'modules/top-list/top-list.html',
+                        prefetchTemplate: false,
                         controller : 'TopListCtrl' ,
                         resolve : {
                             load : loadDeps( [
@@ -55,6 +107,7 @@ define( [
                     views: {
                       'topic-tab': {
                         templateUrl : 'modules/topic/topic.html',
+                        prefetchTemplate: false,
                         controller : 'TopicCtrl' ,
                         resolve : {
                             load : loadDeps( [
@@ -69,6 +122,7 @@ define( [
                     views: {
                       'mine-tab': {
                         templateUrl : 'modules/mine/mine.html',
+                        prefetchTemplate: false,
                         controller : 'MineCtrl' ,
                         resolve : {
                             load : loadDeps( [
