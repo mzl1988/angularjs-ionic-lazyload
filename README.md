@@ -1,7 +1,28 @@
 # 开发时
-  0. npm install
-  1. npm start
-  2. 在浏览器打开 http://192.168.X.XX:6228/app
+  $ npm install -g cnpm --registry=https://registry.npm.taobao.org (如果没全局安装)
+  $ cnpm install -g gulp (如果没全局安装)
+  $ cnpm install
+  $ cp _config.js config.js
+  $ vi config.js (配置打包端口)
+  $ cp app/config/_config.js app/config/config.js
+  $ vi app/config/config.js (配置api)
+  $ npm start
+  $ 在浏览器打开 http://192.168.X.XX:XXXX
+
+# 打包生产包
+  $ npm install -g cnpm --registry=https://registry.npm.taobao.org (如果没全局安装)
+  $ cnpm install -g gulp (如果没全局安装)
+  $ cnpm install
+  $ cp _config.js config.js
+  $ vi config.js (配置打包端口)
+  $ cp app/config/_config.js app/config/config.js
+  $ vi app/config/config.js (配置api)
+  $ gulp build -P(打包生产包)
+  $ (域名指向) release/index.html
+# 测试生产包
+    $ gulp build -P
+    $ gulp test
+    $ 在浏览器打开 http://192.168.X.XX:XXXX
 
 # 调试手机网页 weinre
 
@@ -15,21 +36,6 @@
   在PC端使用webkit浏览器打开控制台
   http://192.168.X.XX:8080/client/#jiaoye
   其中 #后面为识别码,识别码仅仅是为了识别多个需调试的项目时使用，可供多用户操作。
-
-
-# angularjs-ionic-lazyload
-
-这是一个 [AngularJS](https://angularjs.org/) 的示例项目。它使用 [RequireJS](http://requirejs.org/) 按需加载控制器、指令、过滤器等文件，然后使用 [r.js](https://github.com/jrburke/r.js/) 将这些零散的文件按照模块的划分合理的合并在一起，然后使用各种 [gulp](http://gulpjs.com/) 插件精简文件，最后使用 [gulp-rev-all](https://github.com/smysnk/gulp-rev-all) 将这些文件全都根据文件内容重命名成 md5 的文件名。
-
-所有这些操作都只需要一个命令: `gulp`. 
-
-## 运行此项目
-
- 1. 克隆项目到本地
- 2. 全局安装 gulp：`npm install gulp -g`
- 3. 安装 gulp 插件：`npm install` 
- 4. 修改 [gulpfile.js] 里的 `CDN_PREFIX` 变量为 `false`
- 5. 运行 `gulp`，然后在 web 服务器中打开 [cdn/index.html]。双击打开（即以 file:// 协议打开）是无效的。
 
 ### 添加 cdn 前缀
 
