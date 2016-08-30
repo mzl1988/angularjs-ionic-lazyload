@@ -32,10 +32,10 @@ var SRC        = 'app' ,
 
     fs         = require( 'fs' ) ,
     gulp       = require( 'gulp' ) ,
+    webserver = require('gulp-webserver'),
     minifyJS   = require( 'gulp-uglify' ) ,
     minifyCSS  = require( 'gulp-minify-css' ) ,
     minifyHTML = require( 'gulp-htmlmin' ) ,
-    budo = require('budo'),
 
     //changed    = require( 'gulp-changed' ) ,
     concat     = require( 'gulp-concat' ) ,
@@ -101,7 +101,7 @@ gulp.task( 'html' , [ 'requirejs' ] , html );
 gulp.task( 'copy' , [ 'requirejs' ] , copy );
 
 // 第三步：将 DIST 文件夹下的文件打上 md5 签名并输出到 CDN 文件夹
-gulp.task( 'default' , [ 'js' , 'css' , 'html' , 'copy' ] , md5 );
+gulp.task( 'build' , [ 'js' , 'css' , 'html' , 'copy' ] , md5 );
 
 function clean() {
     return deleteFile( [ DIST , REQUIREJS , CDN ] );
@@ -181,16 +181,23 @@ function matchArray( value , arr ) {
 }
 
 
-//start our local development server
-gulp.task('watch', function(cb) {
-  budo('app/index.js', {
-    live: true,
-    watchGlob: '{app}/**/*.{html,css,js}',
-    stream: process.stdout,
-    port: 6228,
-    livePort: 6229
-  }).on('connect', function(ev) {
-      // do something on connect ...
-    })
-    .on('exit', cb)
-})
+
+gulp.task('watch', function() {
+  gulp.src('app')
+    .pipe(webserver({
+        host: '0.0.0.0',
+        port: config.port,
+        livereload: config.livereload
+    }));
+});
+
+
+gulp.task('test', function() {
+  gulp.src('release')
+    .pipe(webserver({
+        host: '0.0.0.0',
+        port: config.port
+    }));
+});
+
+gulp.task('default', ['watch']);
