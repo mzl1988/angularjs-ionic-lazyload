@@ -20,9 +20,9 @@
   $ gulp build -P(打包生产包)
   $ (域名指向) release/index.html
 # 测试生产包
-    $ gulp build -P
-    $ gulp test
-    $ 在浏览器打开 http://192.168.X.XX:XXXX
+  $ gulp build -P
+  $ gulp test
+  $ 在浏览器打开 http://192.168.X.XX:XXXX
 
 # 调试手机网页 weinre
 
